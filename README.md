@@ -62,3 +62,24 @@ The dictionary from the occurrences list has few keys:
 In general you would inter over the list and replace every tag with something.
 
 In the the end the callable should return modified text.
+
+
+Running tests
+-------------
+Tests are in the content_bbcode_demo.demo_application. Clone the repo and run:
+
+```
+pip install -r demo_requirements.txt
+```
+
+Direct test run:
+
+```
+python manage.py test content_bbcode_demo
+```
+
+Testing on Python 2.7 and 3.3 with tox:
+
+```
+tox
+```

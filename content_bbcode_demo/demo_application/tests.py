@@ -43,3 +43,11 @@ class ParserTestCase(TestCase):
     def _parse_tags(self, text):
         instance = cbcparser.ContentBBCodeParser()
         return instance.parse_tags(text)
+
+
+class TemplateTagTestCase(TestCase):
+    def test_integration(self):
+        response = self.client.get('/')
+        self.assertEqual(200, response.status_code)
+        self.assertContains(response, '[rk:b]content bbcode example[/rk:b]')
+        self.assertContains(response, '<b>content bbcode example</b>')

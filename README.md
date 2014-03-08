@@ -30,19 +30,23 @@ So it's BBCode that calls some Python code, Django ORM even and returns dynamic 
 How to use it
 -------------
 * Add 'content_bbcode' to INSTALLED_APPS
-** You will get 'parse_content_bbcode' templatetag you can use in your templates on text which should have tags parsed:
+* You will get 'parse_content_bbcode' templatetag you can use in your templates on text which should have tags parsed:
 ```
 {% load parse_content_bbcode %}
 {{ article.text|parse_content_bbcode|safe }}
 ```
-You will have to define parsers for tags you will want to use. The application will look for **tags.py** files in every\
+* Look at template tag https://github.com/riklaunim/django-content-bbcode/blob/master/content_bbcode/templatetags/parse_content_bbcode.py for in-code usage
+
+You will have to define parsers for tags you will want to use. The application will look for **tags.py** files in every
 application from INSTALLED_APPS. In that file it will look for **registered_tags** dictionary.
+
 Example: https://github.com/riklaunim/django-content-bbcode/blob/master/content_bbcode_demo/demo_application/tags.py
 
 * Dictionary key is the tag *name* like *rk:art* would have *art* as name.
 * Dictionary value would be a callable, usually a function taking two arguments: list of dictionaries and text
-** The text is the text in which we replace the tags
-** The list of dictionaries is a list of all occurrences of given tag
+
+* The text is the text in which we replace the tags
+* The list of dictionaries is a list of all occurrences of given tag
 
 
 The dictionary from the occurrences list has few keys:

@@ -83,3 +83,17 @@ Testing on Python 2.7 and 3.3 with tox:
 ```
 tox
 ```
+
+Project status
+--------------
+At the moment the code is just after pulling it out of my site code. It still needs some refactors/cleanups and quite likely regexp improvements,
+but it works, at least it should :)
+
+I'll try to post, commit somewhere some real tags, like the pygments syntax highlighting and so on.
+
+You can check the issues page for current ToDo list. I'm also interested in your feedback, suggestions and pull requests :)
+
+
+Credits
+-------
+* tags loader was inspired by https://github.com/pozytywnie/django-javascript-settings configuration loader

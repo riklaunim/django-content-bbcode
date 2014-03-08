@@ -1,15 +1,19 @@
+from os import path
 from setuptools import setup, find_packages
 
+
+def read(name):
+    return open(path.join(path.dirname(__file__), name)).read()
 
 setup(
     name='django-content-bbcode',
     version='0.0.1',
     description='Advanced BBCode alike tags parser',
-    long_description=open('README.rst', 'r').read(),
+    long_description=read('README.md'),
     author='Piotr Malinski',
     author_email='riklaunim@gmail.com',
     url='https://github.com/riklaunim/django-content-bbcode',
-    packages=find_packages(exclude=["*.demo"]),
+    packages=find_packages(exclude=["*demo"]),
     install_requires=[
         'Django',
     ],

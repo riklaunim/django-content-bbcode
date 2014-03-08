@@ -54,6 +54,9 @@ The dictionary from the occurrences list has few keys:
 * attributes: all key-value attributes given to the tag
 * code: will be only for double tags (those with opening and closing tag)
 
+```[rk:mytag]code[/rk:mytag]```
+
+
 In general you would inter over the list and replace every tag with something.
 
 In the the end the callable should return modified text.

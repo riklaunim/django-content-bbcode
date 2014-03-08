@@ -1,20 +1,20 @@
 
-def b(dic, text):
-    for i in dic:
-        text = text.replace(i['tag'],  '<b>%s</b>' % i['code'])
+def b(occurrences, text):
+    for occurrence in occurrences:
+        text = text.replace(occurrence['tag'],  '<b>%s</b>' % occurrence['code'])
     return text
 
 
-def anchor(dic, text):
-    for i in dic:
-        href = i['attributes']['href']
-        text = text.replace(i['tag'], '<a href="%s">link</a>' % href)
+def anchor(occurrences, text):
+    for occurrence in occurrences:
+        href = occurrence['attributes']['href']
+        text = text.replace(occurrence['tag'], '<a href="%s">link</a>' % href)
     return text
 
 
-def test(dic, text):
-    for i in dic:
-        text = text.replace(i['tag'], 'TEST!')
+def test(occurrences, text):
+    for occurrence in occurrences:
+        text = text.replace(occurrence['tag'], 'TEST!')
     return text
 
 

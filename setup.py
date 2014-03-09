@@ -13,7 +13,7 @@ setup(
     author='Piotr Malinski',
     author_email='riklaunim@gmail.com',
     url='https://github.com/riklaunim/django-content-bbcode',
-    packages=find_packages(exclude=["*demo"]),
+    packages=find_packages(exclude=["content_bbcode_demo"]),
     install_requires=[
         'Django',
     ],

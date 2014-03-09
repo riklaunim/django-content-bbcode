@@ -29,6 +29,11 @@ So it's BBCode that calls some Python code, Django ORM even and returns dynamic 
 
 How to use it
 -------------
+* You can install it from pypi:
+```
+pip install django-content-bbcode
+```
+
 * Add 'content_bbcode' to INSTALLED_APPS
 * You will get 'parse_content_bbcode' templatetag you can use in your templates on text which should have tags parsed:
 ```

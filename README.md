@@ -83,7 +83,7 @@ Direct test run:
 python manage.py test content_bbcode_demo
 ```
 
-Testing on Python 2.7 and 3.3 with tox:
+Testing on Python 2.7 and 3.6 with tox:
 
 ```
 tox

@@ -1,5 +1,7 @@
 from re import findall
 
+from django.conf import settings
+
 
 class BaseTagParser(object):
     regexp = NotImplementedError
@@ -9,7 +11,7 @@ class BaseTagParser(object):
         self.parsed_data = {}
 
     def parse(self, text):
-        tags_in_text = findall(self.regexp, text)
+        tags_in_text = findall(self.regexp.format(PREFIX=get_prefix()), text)
 
         for tag_args in tags_in_text:
             self._parse_tag_occurrence(*tag_args)
@@ -43,13 +45,14 @@ class BaseTagParser(object):
 
 
 class DoubleTagParser(BaseTagParser):
-    regexp = r'(?xs)\[\s*rk:([a-z0-9]*)(.*?)\](.*?)\[(?=\s*/rk)\s*/rk:(\1)\s*\]'''
+    regexp = r'(?xs)\[\s*{PREFIX}:([a-z0-9]*)(.*?)\](.*?)\[(?=\s*/rk)\s*/{PREFIX}:(\1)\s*\]'''
 
     @staticmethod
     def _get_tag_string(tag_name, tag_kwargs, tag_text):
+        prefix = get_prefix()
         if tag_kwargs:
-            return '[rk:' + tag_name + ' ' + tag_kwargs + ']' + tag_text + '[/rk:' + tag_name + ']'
-        return '[rk:' + tag_name + ']' + tag_text + '[/rk:' + tag_name + ']'
+            return '[' + prefix + ':' + tag_name + ' ' + tag_kwargs + ']' + tag_text + '[/' + prefix + ':' + tag_name + ']'
+        return '[' + prefix + ':' + tag_name + ']' + tag_text + '[/' + prefix + ':' + tag_name + ']'
 
     def _parse_tag_occurrence(self, tag_name, tag_kwargs, tag_text, _):
         tag_kwargs = tag_kwargs.strip()
@@ -62,13 +65,14 @@ class DoubleTagParser(BaseTagParser):
 
 
 class SingleTagParser(BaseTagParser):
-    regexp = r'\[rk:([a-z_0-9]*)(.*?)\]'
+    regexp = r'\[{PREFIX}:([a-z_0-9]*)(.*?)\]'
 
     @staticmethod
     def _get_tag_string(tag_name, tag_kwargs):
+        prefix = get_prefix()
         if tag_kwargs:
-            return '[rk:' + tag_name + ' ' + tag_kwargs + ']'
-        return '[rk:' + tag_name + ']'
+            return '[' + prefix + ':' + tag_name + ' ' + tag_kwargs + ']'
+        return '[' + prefix + ':' + tag_name + ']'
 
     def _parse_tag_occurrence(self, tag_name, tag_kwargs):
         tag_kwargs = tag_kwargs.strip()
@@ -77,3 +81,7 @@ class SingleTagParser(BaseTagParser):
         if not tag_name in self.parsed_data:
             self.parsed_data[tag_name] = list()
         self.parsed_data[tag_name].append(tag_instance)
+
+
+def get_prefix():
+    return getattr(settings, 'CONTENT_BBCODE_PREFIX', 'rk')

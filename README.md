@@ -68,6 +68,8 @@ In general you would inter over the list and replace every tag with something.
 
 In the the end the callable should return modified text.
 
+If you want to place tags.py in different location, then you can define CONTENT_BBCODE_SCAN_MODULES as a dictionary of 'app_name': 'module_location'.
+
 
 Running tests
 -------------

@@ -40,8 +40,18 @@ pip install django-content-bbcode
 {% load parse_content_bbcode %}
 {{ article.text|parse_content_bbcode|safe }}
 ```
-* Look at template tag https://github.com/riklaunim/django-content-bbcode/blob/master/content_bbcode/templatetags/parse_content_bbcode.py for in-code usage
 
+In code usage
+-------------
+
+You can also manually parse tags:
+```
+parser = cbcparser.ContentBBCodeParser()
+result = parser.parse_tags(some_text)
+```
+
+Setup and usage
+-------------
 You will have to define parsers for tags you will want to use. The application will look for **tags.py** files in every
 application from INSTALLED_APPS. In that file it will look for **registered_tags** dictionary.
 

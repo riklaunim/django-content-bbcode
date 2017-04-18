@@ -55,6 +55,13 @@ class ParserTestCase(TestCase):
         result = self._parse_tags(text)
         self.assertEqual(expected, result)
 
+    @override_settings(CONTENT_BBCODE_PREFIX='Anchesenamon')
+    def test_double_tag_with_prefix(self):
+        text = 'foo [Anchesenamon:b]bar[/Anchesenamon:b] taz'
+        expected = 'foo <b>bar</b> taz'
+        result = self._parse_tags(text)
+        self.assertEqual(expected, result)
+
     def _parse_tags(self, text):
         instance = cbcparser.ContentBBCodeParser()
         return instance.parse_tags(text)

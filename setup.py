@@ -7,7 +7,7 @@ def read(name):
 
 setup(
     name='django-content-bbcode',
-    version='0.1.0',
+    version='0.1.1',
     description='Advanced BBCode alike tags parser',
     long_description=read('README.md'),
     author='Piotr Malinski',

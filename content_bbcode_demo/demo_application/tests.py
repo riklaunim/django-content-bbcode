@@ -62,6 +62,18 @@ class ParserTestCase(TestCase):
         result = self._parse_tags(text)
         self.assertEqual(expected, result)
 
+    def test_if_hyphen_tag_is_parsed(self):
+        text = 'foo [rk:test-this] bar'
+        expected = 'foo TEST! bar'
+        result = self._parse_tags(text)
+        self.assertEqual(expected, result)
+
+    def test_if_double_hyphen_tag_is_parsed(self):
+        text = 'foo [rk:test-this]xxx[/rk:test-this] bar'
+        expected = 'foo TEST! bar'
+        result = self._parse_tags(text)
+        self.assertEqual(expected, result)
+
     def _parse_tags(self, text):
         instance = cbcparser.ContentBBCodeParser()
         return instance.parse_tags(text)

@@ -22,4 +22,5 @@ registered_tags = {
     'anchor': anchor,
     'b': b,
     'test': test,
+    'test-this': test,
 }

@@ -45,7 +45,7 @@ class BaseTagParser(object):
 
 
 class DoubleTagParser(BaseTagParser):
-    regexp = r'(?xs)\[\s*{PREFIX}:([a-z0-9]*)(.*?)\](.*?)\[(?=\s*/{PREFIX})\s*/{PREFIX}:(\1)\s*\]'''
+    regexp = r'(?xs)\[\s*{PREFIX}:([a-z0-9\-]*)(.*?)\](.*?)\[(?=\s*/{PREFIX})\s*/{PREFIX}:(\1)\s*\]'''
 
     @staticmethod
     def _get_tag_string(tag_name, tag_kwargs, tag_text):
@@ -65,7 +65,7 @@ class DoubleTagParser(BaseTagParser):
 
 
 class SingleTagParser(BaseTagParser):
-    regexp = r'\[{PREFIX}:([a-z_0-9]*)(.*?)\]'
+    regexp = r'\[{PREFIX}:([a-z_0-9\-]*)(.*?)\]'
 
     @staticmethod
     def _get_tag_string(tag_name, tag_kwargs):
